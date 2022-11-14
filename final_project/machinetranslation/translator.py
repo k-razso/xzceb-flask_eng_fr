@@ -12,13 +12,14 @@ URL = os.environ['url']
 """ Following code follows cloud.ibm.com language translator API documentation
  Creates an instance of IBM Watson language translator with personal credentials """
 
-AUTHENTICATOR = IAMAuthenticator(APIKEY)
+authenticator = IAMAuthenticator(APIKEY)
 LANGUAGE_TRANSLATOR = LanguageTranslatorV3(
     version='2018-05-01',
-    authenticator=AUTHENTICATOR
+    authenticator=authenticator
 )
 
 LANGUAGE_TRANSLATOR.set_service_url(URL)
+LANGUAGE_TRANSLATOR.set_disable_ssl_verification(True)
 
 
 def english_to_french(english_text):
